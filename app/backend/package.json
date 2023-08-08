@@ -6,7 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsnd --watch \"./src/**\" --transpile-only ./src/server.ts",
-    "start": "tsc && nodemon build/server.js"
+    "start": "tsc && nodemon build/server.js",
+    "down": "docker compose down",
+    "up": "docker compose up --build",
+    "create": "tsc && env $(cat .env) npx sequelize db:create",
+    "migration": "npx sequelize db:migrate",
+    "seed": "npx sequelize db:seed:all",
+    "reset": "npm run down && npm run up",
+    "db": "npm run create && npm run migration && npm run seed"
   },
   "keywords": [],
   "author": "",

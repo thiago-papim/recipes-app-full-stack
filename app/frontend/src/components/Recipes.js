@@ -16,7 +16,8 @@ export default function Recipes() {
     const pageName = pathname.includes('meals');
     const validationApi = pageName
       ? ['https://www.themealdb.com/api/json/v1/1/list.php?c=list', 'meals']
-      : ['https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list', 'drinks'];
+      // : ['https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list', 'drinks'];
+      : ['http://localhost:3001/drinks/categories', 'drinks'];
     async function fetchData() {
       const magicNumber = 5;
       const response = await apiSearch(validationApi[0]);
