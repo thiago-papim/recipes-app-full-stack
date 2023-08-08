@@ -11,7 +11,9 @@
     "up": "docker compose up --build",
     "create": "tsc && env $(cat .env) npx sequelize db:create",
     "migration": "npx sequelize db:migrate",
-    "seed": "npx sequelize db:seed:all"
+    "seed": "npx sequelize db:seed:all",
+    "reset": "npm run down && npm run up",
+    "db": "npm run create && npm run migration && npm run seed"
   },
   "keywords": [],
   "author": "",

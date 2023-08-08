@@ -10,7 +10,7 @@ class App {
     constructor() {
         this.app = (0, express_1.default)();
         this.config();
-        this.app.get('/', (req, res) => res.json({ message: 'FUNCIONOU' }));
+        this.app.get('/', (req, res) => res.json({ message: 'Deu certo' }));
         this.routes();
     }
     config() {

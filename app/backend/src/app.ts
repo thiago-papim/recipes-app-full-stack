@@ -9,7 +9,7 @@ class App {
 
     this.config();
 
-    this.app.get('/', (req, res) => res.json({ message: 'FUNCIONOU' }));
+    this.app.get('/', (req, res) => res.json({ message: 'Deu certo' }));
 
     this.routes();
   }
