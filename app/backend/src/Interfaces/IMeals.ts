@@ -1,3 +1,9 @@
+import { ICRUDModelReader } from "./ICRUDModel";
+
+type MealsModelType = ICRUDModelReader<IMeals>;
+
+export { MealsModelType };
+
 export interface IMeals {
     idMeal: number;
     strMeal: string;
