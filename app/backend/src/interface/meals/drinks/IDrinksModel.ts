@@ -1,6 +1,10 @@
 import { IDrinks } from "./IDrinks";
 
 export interface IDrinksModel {
-  findAll(): Promise<IDrinks[]>,
-  findById(id: IDrinks['idDrink']): Promise<IDrinks | null>
+  findByName(name: IDrinks['strDrink']): Promise<IDrinks[] | null>;
+  findById(id: number): Promise<IDrinks | null>
+  findByLetter(name: IDrinks['strDrink']): Promise<IDrinks[] | null>;
+  findByIngredient(ingredient: IDrinks['strDrink']): Promise<IDrinks[] | null>;
+  findByRandom(): Promise<IDrinks>;
+  findByCategory(category: IDrinks['strCategory']): Promise<IDrinks[] | null>;
 }
