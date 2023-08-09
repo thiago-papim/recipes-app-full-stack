@@ -48,17 +48,13 @@ export default class MealsModel implements MealsModelType {
       attributes: ['strCategory'],
       raw: true,
     });
-  
     const uniqueCategories = new Set<string>();
-  
     dbData.forEach(item => {
       uniqueCategories.add(item.strCategory);
     });
-  
     const result = Array.from(uniqueCategories).map(category => ({
       strCategory: category,
     }));
-  
     return { meals: result };
   }
   
