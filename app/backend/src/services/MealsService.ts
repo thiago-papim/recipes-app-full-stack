@@ -68,5 +68,13 @@ export default class MealsService {
     }
     return { status: 'SUCCESSFUL', data: result };
   }
+
+  public async findByArea(area: string): Promise<ServiceResponse<IMeals[]>> {
+    const result = await this._mealsModel.findByArea(area);
+    if (!result) {
+      return { status: 'NOT_FOUND', data: { message: JSON.stringify(result) } };
+    }
+    return { status: 'SUCCESSFUL', data: result };
+  }
  
 }
