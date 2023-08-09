@@ -17,16 +17,55 @@ class DrinksService {
     constructor(drinksModel = new DrinksModels_1.default()) {
         this.drinksModel = drinksModel;
     }
-    findAll() {
+    findByName(name) {
         return __awaiter(this, void 0, void 0, function* () {
-            const drink = yield this.drinksModel.findAll();
-            return drink;
+            const result = yield this.drinksModel.findByName(name);
+            if (result && result.length > 0) {
+                return { status: 'SUCCESSFUL', data: result };
+            }
+            return { status: 'NOT_FOUND', data: { message: 'Nenhum drink encontrado' } };
         });
     }
     findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const drink = yield this.drinksModel.findById(id);
-            return drink;
+            const result = yield this.drinksModel.findById(id);
+            if (result) {
+                return { status: 'SUCCESSFUL', data: result };
+            }
+            return { status: 'NOT_FOUND', data: { message: 'Nenhum drink encontrado' } };
+        });
+    }
+    findByLetter(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.drinksModel.findByLetter(name);
+            if (result && result.length > 0) {
+                return { status: 'SUCCESSFUL', data: result };
+            }
+            return { status: 'NOT_FOUND', data: { message: 'Nenhum drink encontrado' } };
+        });
+    }
+    fyndByRandom() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.drinksModel.findByRandom();
+            return { status: 'SUCCESSFUL', data: result };
+        });
+    }
+    findByIngredient(ingredient) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.drinksModel.findByIngredient(ingredient);
+            if (result && result.length > 0) {
+                return { status: 'SUCCESSFUL', data: result };
+            }
+            return { status: 'NOT_FOUND', data: { message: 'Nenhum drink encontrado' } };
+        });
+    }
+    findByCategory(category) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.drinksModel.findByCategory(category);
+            if (result && result.length > 0) {
+                return { status: 'SUCCESSFUL', data: result };
+            }
+            return { status: 'NOT_FOUND', data: { message: 'Nenhum drink encontrado' } };
         });
     }
 }

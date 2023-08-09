@@ -13,5 +13,6 @@ router.get('/name', (req: Request, res: Response) => drinksController.findByName
 router.get('/random', (req: Request, res: Response) => drinksController.findByRandom(req, res));
 router.get('/ingredient', (req: Request, res: Response) => drinksController.findByIngredient(req, res));
 router.get('/category', (req: Request, res: Response) => drinksController.findByCategory(req, res));
+router.get('/:id', (req: Request, res: Response) => drinksController.findById(req, res))
 
 export default router;

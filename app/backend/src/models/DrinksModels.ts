@@ -12,10 +12,15 @@ export default class DrinksModel implements IDrinksModel {
         strDrink: {
           [Op.like]: `%${name}%`
         }
-      } 
+      }
     });
     return drink;
   };
+
+  async findById(id: number): Promise<IDrinks | null> {
+    const drink = await this.model.findOne({ where: { idDrink: id }})
+    return drink;
+  }
 
   async findByLetter(name: string): Promise<IDrinks[]> {
     const drink = await this.model.findAll({ 

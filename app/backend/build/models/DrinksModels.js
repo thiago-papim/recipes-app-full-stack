@@ -13,23 +13,66 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const SequelizeDrinks_1 = __importDefault(require("../database/models/SequelizeDrinks"));
+const sequelize_1 = require("sequelize");
 class DrinksModel {
     constructor() {
         this.model = SequelizeDrinks_1.default;
     }
-    findAll() {
+    findByName(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const drink = yield this.model.findAll({
+                where: {
+                    strDrink: {
+                        [sequelize_1.Op.like]: `%${name}%`
+                    }
+                }
+            });
+            return drink;
+        });
+    }
+    ;
+    findById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const drink = yield this.model.findOne({ where: { idDrink: id } });
+            return drink;
+        });
+    }
+    findByLetter(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const drink = yield this.model.findAll({
+                where: {
+                    strDrink: {
+                        [sequelize_1.Op.startsWith]: name[0]
+                    }
+                }
+            });
+            return drink;
+        });
+    }
+    ;
+    findByRandom() {
         return __awaiter(this, void 0, void 0, function* () {
             const drinks = yield this.model.findAll();
+            const randomNumber = Math.floor(Math.random() * drinks.length);
+            return drinks[randomNumber];
+        });
+    }
+    findByIngredient(ingredient) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const drinks = yield this.model.findAll({
+                where: {
+                    [sequelize_1.Op.or]: Array.from({ length: 15 }, (_, i) => ({
+                        [`strIngredient${i + 1}`]: ingredient
+                    }))
+                }
+            });
             return drinks;
         });
     }
-    findById(id) {
+    findByCategory(category) {
         return __awaiter(this, void 0, void 0, function* () {
-            const drink = yield this.model.findByPk(id);
-            if (!drink) {
-                return null;
-            }
-            return drink;
+            const drinks = yield this.model.findAll({ where: { strCategory: category } });
+            return drinks;
         });
     }
 }

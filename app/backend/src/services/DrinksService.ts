@@ -16,6 +16,14 @@ export default class DrinksService {
     return { status: 'NOT_FOUND', data: { message: 'Nenhum drink encontrado'} };
   }
 
+  public async findById(id: number): Promise<ServiceResponse<IDrinks>> {
+    const result = await this.drinksModel.findById(id);
+    if (result) {
+      return { status: 'SUCCESSFUL', data: result };
+    }
+    return { status: 'NOT_FOUND', data: { message: 'Nenhum drink encontrado'} };
+  }
+
   public async findByLetter(name: string): Promise<ServiceResponse<IDrinks[]>> {
     const result = await this.drinksModel.findByLetter(name);
     if (result && result.length > 0) {

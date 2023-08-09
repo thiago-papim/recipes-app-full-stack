@@ -11,15 +11,21 @@ export default class DrinksController {
     const { q } = req.query;
      if (typeof q === 'string') {
       const response = await this.drinksService.findByName(q);
-      return res.status(mapStatusHTTP(response.status)).json(response.data);
+      return res.status(mapStatusHTTP(response.status)).json( {drinks: response.data} );
     }
+  }
+
+  public async findById(req: Request, res: Response) {
+    const { id } = req.params;
+    const response = await this.drinksService.findById(Number(id));
+    return res.status(mapStatusHTTP(response.status)).json( {drinks: [response.data]} );
   }
 
   public async findByLetter(req: Request, res: Response) {
     const { q } = req.query;
      if (typeof q === 'string') {
       const response = await this.drinksService.findByLetter(q);
-      return res.status(mapStatusHTTP(response.status)).json(response.data);
+      return res.status(mapStatusHTTP(response.status)).json( {drinks: response.data} );
     }
   }
 
@@ -32,7 +38,7 @@ export default class DrinksController {
     const { q } = req.query;
      if (typeof q === 'string') {
       const response = await this.drinksService.findByIngredient(q);
-      return res.status(mapStatusHTTP(response.status)).json(response.data);
+      return res.status(mapStatusHTTP(response.status)).json( {drinks: response.data} );
     }
   }
 
@@ -40,7 +46,7 @@ export default class DrinksController {
     const { q } = req.query;
      if (typeof q === 'string') {
       const response = await this.drinksService.findByCategory(q);
-      return res.status(mapStatusHTTP(response.status)).json(response.data);
+      return res.status(mapStatusHTTP(response.status)).json( {drinks: response.data} );
     }
   }
 }
