@@ -27,7 +27,7 @@ function RecipeInProgress() {
     setIdRecipe(id);
     const fetchApi = async () => {
       if (name) {
-        const response = await apiSearch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+        const response = await apiSearch(`http://localhost:3001/meals/${id}`);
         setRecipe(response.meals[0]);
       } else {
         const response = await apiSearch(

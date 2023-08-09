@@ -24,30 +24,115 @@ class MealsController {
             if (response.status !== 'SUCCESSFUL') {
                 return res.status((0, mapStatusHTTP_1.default)(response.status)).json(response.data);
             }
-            res.status(200).json(response.data);
+            res.status(200).json({ meals: response.data });
         });
     }
     findById(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const serviceResponse = yield this._mealsService.findById(Number(id));
-            if (serviceResponse.status !== 'SUCCESSFUL') {
-                return res.status((0, mapStatusHTTP_1.default)(serviceResponse.status)).json(serviceResponse.data);
-            }
-            res.status(200).json(serviceResponse.data);
+            const response = yield this._mealsService.findById(Number(id));
+            return res.status((0, mapStatusHTTP_1.default)(response.status)).json({ meals: [response.data] });
         });
     }
     findByName(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { name } = req.params;
-            if (!name || typeof name !== 'string') {
+            const { q } = req.query;
+            if (!q || typeof q !== 'string') {
                 return res.status(400).json({ message: 'Invalid name parameter' });
             }
-            const response = yield this._mealsService.findByName(name);
+            const response = yield this._mealsService.findByName(q);
             if (response.status !== 'SUCCESSFUL') {
                 return res.status((0, mapStatusHTTP_1.default)(response.status)).json(response.data);
             }
-            res.status(200).json(response.data);
+            return res.status(200).json({ meals: response.data });
+        });
+    }
+    findByFirstLetter(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { q } = req.query;
+            if (!q || typeof q !== 'string' || q.length !== 1) {
+                return res.status(400).json({ message: 'Invalid letter parameter' });
+            }
+            const response = yield this._mealsService.findByFirstLetter(q);
+            if (response.status !== 'SUCCESSFUL') {
+                return res.status((0, mapStatusHTTP_1.default)(response.status)).json(response.data);
+            }
+            return res.status(200).json({ meals: response.data });
+        });
+    }
+    findRandom(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this._mealsService.findRandom();
+            if (response.status !== 'SUCCESSFUL') {
+                return res.status((0, mapStatusHTTP_1.default)(response.status)).json(response.data);
+            }
+            return res.status(200).json({ meals: response.data });
+        });
+    }
+    getAllCategories(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this._mealsService.getAllCategories();
+            if (response.status !== 'SUCCESSFUL') {
+                return res.status((0, mapStatusHTTP_1.default)(response.status)).json(response.data);
+            }
+            return res.status(200).json(response.data);
+        });
+    }
+    getAllAreas(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this._mealsService.getAllAreas();
+            if (response.status !== 'SUCCESSFUL') {
+                return res.status((0, mapStatusHTTP_1.default)(response.status)).json(response.data);
+            }
+            return res.status(200).json(response.data);
+        });
+    }
+    findByCategory(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { q } = req.query;
+            if (!q || typeof q !== 'string') {
+                return res.status(400).json({ message: 'Invalid category parameter' });
+            }
+            const response = yield this._mealsService.findByCategory(q);
+            if (response.status !== 'SUCCESSFUL') {
+                return res.status((0, mapStatusHTTP_1.default)(response.status)).json(response.data);
+            }
+            return res.status(200).json({ meals: response.data });
+        });
+    }
+    findByArea(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { q } = req.query;
+            if (!q || typeof q !== 'string') {
+                return res.status(400).json({ message: 'Invalid area parameter' });
+            }
+            const response = yield this._mealsService.findByArea(q);
+            if (response.status !== 'SUCCESSFUL') {
+                return res.status((0, mapStatusHTTP_1.default)(response.status)).json(response.data);
+            }
+            return res.status(200).json(response.data);
+        });
+    }
+    getAllNames(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this._mealsService.getAllNames();
+            if (response.status !== 'SUCCESSFUL') {
+                return res.status((0, mapStatusHTTP_1.default)(response.status)).json(response.data);
+            }
+            return res.status(200).json(response.data);
+        });
+    }
+    findByIngredient(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { q } = req.query;
+            if (!q || typeof q !== 'string') {
+                return res.status(400).json({ message: 'Invalid ingredient parameter' });
+            }
+            const response = yield this._mealsService.findByIngredient(q);
+            if (response.status !== 'SUCCESSFUL') {
+                return res.status((0, mapStatusHTTP_1.default)(response.status)).json(response.data);
+            }
+            return res.status(200).json({ meals: response.data });
         });
     }
 }

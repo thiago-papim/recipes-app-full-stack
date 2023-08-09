@@ -10,7 +10,7 @@ export default function Meals() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await apiSearch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+      const response = await apiSearch('http://localhost:3001/meals');
       const magicNumber = 12;
       setApi(response.meals.slice(0, magicNumber));
       setOriginalApi(response.meals.slice(0, magicNumber));

@@ -12,16 +12,12 @@ export default class MealsModel implements MealsModelType {
   }
 
   async findById(id: number): Promise<IMeals | null> {
-    const dbData = await this.model.findOne({
-      where: {
-        idMeal: id,
-      },
-    });
-    return !dbData ? null : dbData;
+    const meal = await this.model.findOne({ where: { idMeal: id }})
+    return meal;
   }
 
-  async findByName(name: string): Promise<IMeals | null > {
-    const dbData = await this.model.findOne({
+  async findByName(name: string): Promise<IMeals[] | null > {
+    const dbData = await this.model.findAll({
       where: {
         strMeal: name,
       },
@@ -47,14 +43,34 @@ export default class MealsModel implements MealsModelType {
     return dbData;
   }
 
-  async getAllCategories(): Promise<string[]> {
+  // async getAllCategories(): Promise<string[]> {
+  //   const dbData = await this.model.findAll({
+  //     attributes: ['strCategory'],
+  //     raw: true,
+  //   });
+  //   return dbData.map(item => item.strCategory);
+  // }
+
+  async getAllCategories(): Promise<{ meals: { strCategory: string }[] }> {
     const dbData = await this.model.findAll({
       attributes: ['strCategory'],
       raw: true,
     });
-    return dbData.map(item => item.strCategory);
+  
+    const uniqueCategories = new Set<string>();
+  
+    dbData.forEach(item => {
+      uniqueCategories.add(item.strCategory);
+    });
+  
+    const result = Array.from(uniqueCategories).map(category => ({
+      strCategory: category,
+    }));
+  
+    return { meals: result };
   }
-
+  
+  
   async getAllAreas(): Promise<string[]> {
     const dbData = await this.model.findAll({
       attributes: ['strArea'],
