@@ -44,6 +44,13 @@ export default class MealsService {
     }
     return { status: 'SUCCESSFUL', data: result };
   }
-  
-  
+
+  public async getAllCategories(): Promise<ServiceResponse<string[]>> {
+    const result = await this._mealsModel.getAllCategories();
+    if (!result || result.length === 0) {
+      return { status: 'NOT_FOUND', data: { message: 'No categories found' } };
+    }
+    return { status: 'SUCCESSFUL', data: result };
+  }
+ 
 }

@@ -1,8 +1,7 @@
 import SequelizeMealsModel from '../database/models/SequelizeMealsModel';
 import { IMeals } from '../Interfaces/IMeals';
 import { MealsModelType } from '../Interfaces/IMeals';
-const { Op } = require('sequelize');
-
+import { Op } from 'sequelize';
 
 export default class MealsModel implements MealsModelType {
   private model = SequelizeMealsModel;
@@ -43,4 +42,14 @@ export default class MealsModel implements MealsModelType {
     });
     return dbData;
   }
+
+  async getAllCategories(): Promise<string[]> {
+    const dbData = await this.model.findAll({
+      attributes: ['strCategory'],
+      raw: true,
+    });
+
+    return dbData.map(item => item.strCategory);
+  }
+  
 }
