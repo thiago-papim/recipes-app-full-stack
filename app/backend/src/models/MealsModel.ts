@@ -58,5 +58,15 @@ export default class MealsModel implements MealsModelType {
     });
     return dbData.map(item => item.strArea);
   }
+
+  async findByCategory(category: string): Promise<IMeals[] | null > {
+    const dbData = await this.model.findAll({
+      where: {
+        strCategory: category,
+      },
+      raw: true,
+    });
+    return dbData;
+  }
   
 }

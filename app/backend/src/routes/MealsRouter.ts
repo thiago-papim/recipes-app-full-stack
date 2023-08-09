@@ -9,6 +9,8 @@ router.get('/areas', (req: Request, res: Response) => mealsController.getAllArea
 
 router.get('/categories', (req: Request, res: Response) => mealsController.getAllCategories(req, res));
 
+router.get('/category', (req: Request, res: Response) => mealsController.findByCategory(req, res));
+
 router.get('/letter', (req: Request, res: Response) => mealsController.findByFirstLetter(req, res));
 
 router.get('/name', (req: Request, res: Response) => mealsController.findByName(req, res));

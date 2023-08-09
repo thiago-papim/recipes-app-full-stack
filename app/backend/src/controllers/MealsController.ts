@@ -75,5 +75,17 @@ export default class MealsController {
     }
     return res.status(200).json(response.data);
   }
+
+  public async findByCategory(req: Request, res: Response) {
+    const { q } = req.query;
+    if (!q || typeof q !== 'string') {
+      return res.status(400).json({ message: 'Invalid category parameter' });
+    }
+    const response = await this._mealsService.findByCategory(q);
+    if (response.status !== 'SUCCESSFUL') {
+      return res.status(mapStatusHTTP(response.status)).json(response.data);
+    }
+    return res.status(200).json(response.data);
+  }
   
 }
