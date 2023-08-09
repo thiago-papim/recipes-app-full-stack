@@ -6,7 +6,7 @@ import { Op } from "sequelize";
 export default class DrinksModel implements IDrinksModel {
   private model = SequelizeDrinks;
 
-  async findByName(name: string): Promise<IDrinks[] | null> {
+  async findByName(name: string): Promise<IDrinks[]> {
     const drink = await this.model.findAll({ 
       where: { 
         strDrink: {
@@ -14,13 +14,10 @@ export default class DrinksModel implements IDrinksModel {
         }
       } 
     });
-    if (!drink) {
-      return null
-    }
     return drink;
   };
 
-  async findByLetter(name: string): Promise<IDrinks[] | null> {
+  async findByLetter(name: string): Promise<IDrinks[]> {
     const drink = await this.model.findAll({ 
       where: { 
         strDrink: {
@@ -28,9 +25,6 @@ export default class DrinksModel implements IDrinksModel {
         }
       } 
     });
-    if (!drink) {
-      return null
-    }
     return drink;
   };
 
@@ -40,7 +34,7 @@ export default class DrinksModel implements IDrinksModel {
     return drinks[randomNumber];
   }
 
-  async findByIngredient(ingredient: string): Promise<IDrinks[] | null> {
+  async findByIngredient(ingredient: string): Promise<IDrinks[]> {
     const drinks = await this.model.findAll({
       where: {
         [Op.or]: Array.from({ length: 15 }, (_, i) => ({
@@ -51,7 +45,7 @@ export default class DrinksModel implements IDrinksModel {
     return drinks;
   }
 
-  async findByCategory(category: string): Promise<IDrinks[] | null> {
+  async findByCategory(category: string): Promise<IDrinks[]> {
     const drinks = await this.model.findAll({ where: { strCategory: category }});
     return drinks;
   }
