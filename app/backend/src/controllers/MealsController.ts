@@ -39,5 +39,18 @@ export default class MealsController {
     }
     return res.status(200).json(response.data);
   }
+
+  public async findByFirstLetter(req: Request, res: Response) {
+    const { q } = req.query;
+    if (!q || typeof q !== 'string' || q.length !== 1) {
+      return res.status(400).json({ message: 'Invalid letter parameter' });
+    }
+    const response = await this._mealsService.findByFirstLetter(q);
+    if (response.status !== 'SUCCESSFUL') {
+      return res.status(mapStatusHTTP(response.status)).json(response.data);
+    }
+    return res.status(200).json(response.data);
+  }
+  
   
 }

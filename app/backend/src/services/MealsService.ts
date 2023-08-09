@@ -28,4 +28,13 @@ export default class MealsService {
     }
     return { status: 'SUCCESSFUL', data: result };
   }
+
+  public async findByFirstLetter(letter: string): Promise<ServiceResponse<IMeals[]>> {
+    const result = await this._mealsModel.findByFirstLetter(letter);
+    if (!result || result.length === 0) {
+      return { status: 'NOT_FOUND', data: { message: 'No recipes found with the specified first letter' } };
+    }
+    return { status: 'SUCCESSFUL', data: result };
+  }
+  
 }

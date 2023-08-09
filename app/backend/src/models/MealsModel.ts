@@ -1,6 +1,8 @@
 import SequelizeMealsModel from '../database/models/SequelizeMealsModel';
 import { IMeals } from '../Interfaces/IMeals';
 import { MealsModelType } from '../Interfaces/IMeals';
+const { Op } = require('sequelize');
+
 
 export default class MealsModel implements MealsModelType {
   private model = SequelizeMealsModel;
@@ -23,4 +25,16 @@ export default class MealsModel implements MealsModelType {
     });
     return !dbData ? null : dbData;
   }
+
+  async findByFirstLetter(letter: string): Promise<IMeals[]> {
+    const dbData = await this.model.findAll({
+      where: {
+        strMeal: {
+          [Op.like]: `${letter}%`, // Usando a primeira letra como filtro
+        },
+      },
+    });
+    return dbData;
+  }
+  
 }
