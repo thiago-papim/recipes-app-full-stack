@@ -11,9 +11,13 @@ export default class MealsModel implements MealsModelType {
     return dbData;
   }
 
-  async findById(id: IMeals['idMeal']): Promise<IMeals | null> {
-    const dbData = await this.model.findByPk(id);
-    return dbData;
+  async findById(id: number): Promise<IMeals | null> {
+    const dbData = await this.model.findOne({
+      where: {
+        idMeal: id,
+      },
+    });
+    return !dbData ? null : dbData;
   }
 
   async findByName(name: string): Promise<IMeals | null > {
