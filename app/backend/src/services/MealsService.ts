@@ -20,4 +20,12 @@ export default class MealsService {
     if (!result) return { status: 'NOT_FOUND', data: { message: JSON.stringify(result) } };
     return { status: 'SUCCESSFUL', data: result };
   }
+
+  public async findByName(name: string): Promise<ServiceResponse<IMeals>> {
+    const result = await this._mealsModel.findByName(name);
+    if (!result) {
+      return { status: 'NOT_FOUND', data: { message: JSON.stringify(result) } };
+    }
+    return { status: 'SUCCESSFUL', data: result };
+  }
 }

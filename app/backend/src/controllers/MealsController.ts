@@ -25,7 +25,19 @@ export default class MealsController {
     if (serviceResponse.status !== 'SUCCESSFUL') {
       return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
     }
-console.log();
     res.status(200).json(serviceResponse.data);
   }
+
+  public async findByName(req: Request, res: Response) {
+    const { q } = req.query;
+    if (!q || typeof q !== 'string') {
+      return res.status(400).json({ message: 'Invalid name parameter' });
+    }
+    const response = await this._mealsService.findByName(q);
+    if (response.status !== 'SUCCESSFUL') {
+      return res.status(mapStatusHTTP(response.status)).json(response.data);
+    }
+    return res.status(200).json(response.data);
+  }
+  
 }
