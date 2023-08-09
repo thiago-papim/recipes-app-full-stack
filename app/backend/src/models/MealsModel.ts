@@ -43,14 +43,6 @@ export default class MealsModel implements MealsModelType {
     return dbData;
   }
 
-  // async getAllCategories(): Promise<string[]> {
-  //   const dbData = await this.model.findAll({
-  //     attributes: ['strCategory'],
-  //     raw: true,
-  //   });
-  //   return dbData.map(item => item.strCategory);
-  // }
-
   async getAllCategories(): Promise<{ meals: { strCategory: string }[] }> {
     const dbData = await this.model.findAll({
       attributes: ['strCategory'],
