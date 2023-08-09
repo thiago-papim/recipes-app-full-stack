@@ -36,5 +36,14 @@ export default class MealsService {
     }
     return { status: 'SUCCESSFUL', data: result };
   }
+
+  public async findRandom(): Promise<ServiceResponse<IMeals[]>> {
+    const result = await this._mealsModel.findRandom();
+    if (!result || result.length === 0) {
+      return { status: 'NOT_FOUND', data: { message: 'No random recipes found' } };
+    }
+    return { status: 'SUCCESSFUL', data: result };
+  }
+  
   
 }

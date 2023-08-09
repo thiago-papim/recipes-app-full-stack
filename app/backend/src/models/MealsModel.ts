@@ -30,11 +30,17 @@ export default class MealsModel implements MealsModelType {
     const dbData = await this.model.findAll({
       where: {
         strMeal: {
-          [Op.like]: `${letter}%`, // Usando a primeira letra como filtro
+          [Op.like]: `${letter}%`,
         },
       },
     });
     return dbData;
   }
-  
+
+  async findRandom(): Promise<IMeals[]> {
+    const dbData = await this.model.findAll({
+      order: this.model.sequelize?.random(), 
+    });
+    return dbData;
+  }
 }
