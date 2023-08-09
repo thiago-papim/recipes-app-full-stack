@@ -7,13 +7,28 @@ export default class DrinksService {
     private drinksModel: IDrinksModel = new DrinksModel(),
   ) { }
 
-  public async findAll(): Promise<IDrinks[] | []> {
-    const drink = await this.drinksModel.findAll();
+  public async findByName(name: string): Promise<IDrinks[] | null> {
+    const drink = await this.drinksModel.findByName(name);
     return drink
   }
 
-  public async findById(id: number): Promise<IDrinks | null> {
-    const drink = await this.drinksModel.findById(id);
+  public async findByLetter(name: string): Promise<IDrinks[] | null> {
+    const drink = await this.drinksModel.findByLetter(name);
     return drink
+  }
+
+  public async fyndByRandom(): Promise<IDrinks> {
+    const drink = await this.drinksModel.findByRandom();
+    return drink;
+  }
+
+  public async findByIngredient(ingredient: string): Promise<IDrinks[] | null> {
+    const drink = await this.drinksModel.findByIngredient(ingredient);
+    return drink;
+  }
+
+  public async findByCategory(category: string): Promise<IDrinks[] | null> {
+    const drink = await this.drinksModel.findByCategory(category);
+    return drink;
   }
 }
