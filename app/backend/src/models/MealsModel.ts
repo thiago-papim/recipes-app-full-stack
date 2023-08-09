@@ -48,8 +48,15 @@ export default class MealsModel implements MealsModelType {
       attributes: ['strCategory'],
       raw: true,
     });
-
     return dbData.map(item => item.strCategory);
+  }
+
+  async getAllAreas(): Promise<string[]> {
+    const dbData = await this.model.findAll({
+      attributes: ['strArea'],
+      raw: true,
+    });
+    return dbData.map(item => item.strArea);
   }
   
 }

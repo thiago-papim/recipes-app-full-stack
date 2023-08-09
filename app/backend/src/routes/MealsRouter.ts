@@ -5,6 +5,8 @@ const mealsController = new MealsController();
 
 const router = Router();
 
+router.get('/areas', (req: Request, res: Response) => mealsController.getAllAreas(req, res));
+
 router.get('/categories', (req: Request, res: Response) => mealsController.getAllCategories(req, res));
 
 router.get('/letter', (req: Request, res: Response) => mealsController.findByFirstLetter(req, res));

@@ -52,5 +52,13 @@ export default class MealsService {
     }
     return { status: 'SUCCESSFUL', data: result };
   }
+
+  public async getAllAreas(): Promise<ServiceResponse<string[]>> {
+    const result = await this._mealsModel.getAllAreas();
+    if (!result || result.length === 0) {
+      return { status: 'NOT_FOUND', data: { message: 'No areas found' } };
+    }
+    return { status: 'SUCCESSFUL', data: result };
+  }
  
 }
