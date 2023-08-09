@@ -17,6 +17,8 @@ router.get('/letter', (req: Request, res: Response) => mealsController.findByFir
 
 router.get('/name', (req: Request, res: Response) => mealsController.findByName(req, res));
 
+router.get('/names', (req: Request, res: Response) => mealsController.getAllNames(req, res));
+
 router.get('/random', (req: Request, res: Response) => mealsController.findRandom(req, res));
 
 router.get('/:id', (req: Request, res: Response) => mealsController.findById(req, res));

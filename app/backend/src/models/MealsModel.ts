@@ -78,5 +78,13 @@ export default class MealsModel implements MealsModelType {
     });
     return dbData;
   }
+
+  async getAllNames(): Promise<string[]> {
+    const dbData = await this.model.findAll({
+      attributes: ['strMeal'],
+      raw: true,
+    });
+    return dbData.map(item => item.strMeal);
+  }
   
 }

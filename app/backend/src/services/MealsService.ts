@@ -76,5 +76,13 @@ export default class MealsService {
     }
     return { status: 'SUCCESSFUL', data: result };
   }
+
+  public async getAllNames(): Promise<ServiceResponse<string[]>> {
+    const result = await this._mealsModel.getAllNames();
+    if (!result || result.length === 0) {
+      return { status: 'NOT_FOUND', data: { message: 'No names found' } };
+    }
+    return { status: 'SUCCESSFUL', data: result };
+  }
  
 }
