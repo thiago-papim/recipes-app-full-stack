@@ -21,6 +21,8 @@ router.get('/names', (req: Request, res: Response) => mealsController.getAllName
 
 router.get('/random', (req: Request, res: Response) => mealsController.findRandom(req, res));
 
+router.get('/ingredient', (req: Request, res: Response) => mealsController.findByIngredient(req, res));
+
 router.get('/:id', (req: Request, res: Response) => mealsController.findById(req, res));
 
 router.get('/', (req: Request, res: Response) => mealsController.findAll(req, res));

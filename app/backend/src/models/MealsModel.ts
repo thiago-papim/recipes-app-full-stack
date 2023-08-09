@@ -86,5 +86,17 @@ export default class MealsModel implements MealsModelType {
     });
     return dbData.map(item => item.strMeal);
   }
-  
+
+  async findByIngredient(ingredient: string): Promise<IMeals[]> {
+    const meals = await this.model.findAll({
+      where: {
+        [Op.or]: Array.from({ length: 15 }, (_, i) => ({
+          [`strIngredient${i + 1}`]: ingredient
+        }))
+      },
+      raw: true,
+    });
+    return meals;
+  }
+ 
 }

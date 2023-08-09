@@ -84,5 +84,13 @@ export default class MealsService {
     }
     return { status: 'SUCCESSFUL', data: result };
   }
+
+  public async findByIngredient(ingredient: string): Promise<ServiceResponse<IMeals[]>> {
+    const result = await this._mealsModel.findByIngredient(ingredient);
+    if (!result) {
+      return { status: 'NOT_FOUND', data: { message: JSON.stringify(result) } };
+    }
+    return { status: 'SUCCESSFUL', data: result };
+  }
  
 }
