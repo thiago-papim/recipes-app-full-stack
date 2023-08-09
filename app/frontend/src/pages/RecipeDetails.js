@@ -37,14 +37,15 @@ function RecipeDetails(props) {
   };
 
   const getDrink = async () => {
-    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
+    const response = await fetch(`http://localhost:3001/drinks/${id}`);
     const data = await response.json();
+    console.log(data);
     return data.drinks;
   };
 
   const getDrinksRecomendations = async () => {
     const magicNumber = 6;
-    const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+    const response = await fetch('http://localhost:3001/drinks/name?q=');
     const data = await response.json();
     const recipes = data.drinks;
     const slicedDrinks = recipes.slice(0, magicNumber);

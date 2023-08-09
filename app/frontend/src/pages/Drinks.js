@@ -10,7 +10,7 @@ function Drinks() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await apiSearch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+      const response = await apiSearch('http://localhost:3001/drinks/name?q=');
       const magicNumber = 12;
       setApi(response.drinks.slice(0, magicNumber));
       setOriginalApi(response.drinks.slice(0, magicNumber));

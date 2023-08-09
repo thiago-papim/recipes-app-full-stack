@@ -37,16 +37,16 @@ export default function SearchBar() {
 
   const getApi = async () => {
     const pageName = pathname.includes('meals');
-    const validationApi = pageName ? 'themealdb' : 'thecocktaildb';
+    const validationApi = pageName ? 'meals' : 'drinks';
     let recipeArr = [];
     if (inputRadio === 'First letter' && inputSearch.length > 1) {
       global.alert('Your search must have only 1 (one) character');
     } else if (inputRadio === 'First letter' && inputSearch.length === 1) {
-      recipeArr = await apiSearch(`https://www.${validationApi}.com/api/json/v1/1/search.php?f=${inputSearch}`);
+      recipeArr = await apiSearch(`http://localhost:3001/${validationApi}/letter?q=${inputSearch}`);
     } else if (inputRadio === 'Name') {
-      recipeArr = await apiSearch(`https://www.${validationApi}.com/api/json/v1/1/search.php?s=${inputSearch}`);
+      recipeArr = await apiSearch(`http://localhost:3001/${validationApi}/name?q=${inputSearch}`);
     } else {
-      recipeArr = await apiSearch(`https://www.${validationApi}.com/api/json/v1/1/filter.php?i=${inputSearch}`);
+      recipeArr = await apiSearch(`http://localhost:3001/${validationApi}/ingredient?q=${inputSearch}`);
     }
     recipeApi(recipeArr);
   };

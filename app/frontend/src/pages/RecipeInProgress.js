@@ -31,7 +31,7 @@ function RecipeInProgress() {
         setRecipe(response.meals[0]);
       } else {
         const response = await apiSearch(
-          `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`,
+          `http://localhost:3001/drinks/${id}`,
         );
         setRecipe(response.drinks[0]);
       }
