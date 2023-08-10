@@ -28,14 +28,87 @@ class MealsService {
     findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield this._mealsModel.findById(id);
-            if (!result)
-                return { status: 'NOT_FOUND', data: { message: JSON.stringify(result) } };
-            return { status: 'SUCCESSFUL', data: result };
+            if (result) {
+                return { status: 'SUCCESSFUL', data: result };
+            }
+            return { status: 'NOT_FOUND', data: { message: 'Nenhuma receita encontrada' } };
         });
     }
     findByName(name) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield this._mealsModel.findByName(name);
+            if (!result) {
+                return { status: 'NOT_FOUND', data: { message: JSON.stringify(result) } };
+            }
+            return { status: 'SUCCESSFUL', data: result };
+        });
+    }
+    findByFirstLetter(letter) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this._mealsModel.findByFirstLetter(letter);
+            if (!result || result.length === 0) {
+                return { status: 'NOT_FOUND', data: { message: 'No recipes found with the specified first letter' } };
+            }
+            return { status: 'SUCCESSFUL', data: result };
+        });
+    }
+    findRandom() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this._mealsModel.findRandom();
+            if (!result || result.length === 0) {
+                return { status: 'NOT_FOUND', data: { message: 'No random recipes found' } };
+            }
+            return { status: 'SUCCESSFUL', data: result };
+        });
+    }
+    getAllCategories() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this._mealsModel.getAllCategories();
+            if (!result) {
+                return { status: 'NOT_FOUND', data: { message: 'No categories found' } };
+            }
+            return { status: 'SUCCESSFUL', data: result };
+        });
+    }
+    getAllAreas() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this._mealsModel.getAllAreas();
+            if (!result || result.length === 0) {
+                return { status: 'NOT_FOUND', data: { message: 'No areas found' } };
+            }
+            return { status: 'SUCCESSFUL', data: result };
+        });
+    }
+    findByCategory(category) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this._mealsModel.findByCategory(category);
+            if (!result) {
+                return { status: 'NOT_FOUND', data: { message: JSON.stringify(result) } };
+            }
+            return { status: 'SUCCESSFUL', data: result };
+        });
+    }
+    findByArea(area) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this._mealsModel.findByArea(area);
+            if (!result) {
+                return { status: 'NOT_FOUND', data: { message: JSON.stringify(result) } };
+            }
+            return { status: 'SUCCESSFUL', data: result };
+        });
+    }
+    getAllNames() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this._mealsModel.getAllNames();
+            if (!result || result.length === 0) {
+                return { status: 'NOT_FOUND', data: { message: 'No names found' } };
+            }
+            return { status: 'SUCCESSFUL', data: result };
+        });
+    }
+    findByIngredient(ingredient) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this._mealsModel.findByIngredient(ingredient);
             if (!result) {
                 return { status: 'NOT_FOUND', data: { message: JSON.stringify(result) } };
             }

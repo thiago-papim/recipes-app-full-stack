@@ -17,11 +17,14 @@ export default class MealsService {
 
   public async findById(id: number): Promise<ServiceResponse<IMeals>> {
     const result = await this._mealsModel.findById(id);
-    if (!result) return { status: 'NOT_FOUND', data: { message: JSON.stringify(result) } };
-    return { status: 'SUCCESSFUL', data: result };
+    if (result) {
+      return { status: 'SUCCESSFUL', data: result };
+    }
+    return { status: 'NOT_FOUND', data: { message: 'Nenhuma receita encontrada'} };
   }
 
-  public async findByName(name: string): Promise<ServiceResponse<IMeals>> {
+
+  public async findByName(name: string): Promise<ServiceResponse<IMeals[]>> {
     const result = await this._mealsModel.findByName(name);
     if (!result) {
       return { status: 'NOT_FOUND', data: { message: JSON.stringify(result) } };
@@ -45,9 +48,9 @@ export default class MealsService {
     return { status: 'SUCCESSFUL', data: result };
   }
 
-  public async getAllCategories(): Promise<ServiceResponse<string[]>> {
+  public async getAllCategories(): Promise<ServiceResponse<object>> {
     const result = await this._mealsModel.getAllCategories();
-    if (!result || result.length === 0) {
+    if (!result ) {
       return { status: 'NOT_FOUND', data: { message: 'No categories found' } };
     }
     return { status: 'SUCCESSFUL', data: result };

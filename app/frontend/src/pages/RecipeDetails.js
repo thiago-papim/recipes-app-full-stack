@@ -22,14 +22,14 @@ function RecipeDetails(props) {
   const type = urlAposDominio[1];
 
   const getFood = async () => {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+    const response = await fetch(`http://localhost:3001/meals/${id}`);
     const data = await response.json();
     return data.meals;
   };
 
   const getMealsRecomendations = async () => {
     const magicNumber = 6;
-    const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+    const response = await fetch('http://localhost:3001/meals');
     const data = await response.json();
     const recipes = data.meals;
     const slicedMeals = recipes.slice(0, magicNumber);
