@@ -33,7 +33,7 @@ export default function Recipes() {
       const pageName = pathname.includes('meals');
       const validationApi = pageName
         ? [`${process.env.REACT_APP_HOST}/meals/category?q=${textContent}`, 'meals']
-        : [`${process.env.REACT_APP_HOST}/category?q=${textContent}`, 'drinks'];
+        : [`${process.env.REACT_APP_HOST}/drinks/category?q=${textContent}`, 'drinks'];
       const response = await apiSearch(validationApi[0]);
       const result = response[validationApi[1]].slice(0, magicNumber);
       setApi(result);
