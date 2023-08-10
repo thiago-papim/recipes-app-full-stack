@@ -10,7 +10,8 @@ function Drinks() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await apiSearch('http://localhost:3001/drinks/name?q=');
+      const host = process.env.REACT_APP_HOST;
+      const response = await apiSearch(`${host}/drinks/name?q=`);
       const magicNumber = 12;
       setApi(response.drinks.slice(0, magicNumber));
       setOriginalApi(response.drinks.slice(0, magicNumber));

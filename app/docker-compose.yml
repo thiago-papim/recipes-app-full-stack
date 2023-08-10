@@ -6,6 +6,8 @@ services:
       backend:
         condition: service_healthy
     build: ./frontend
+    environment:
+      - REACT_APP_HOST=backend
     ports:
       - 3000:3000
     working_dir: /app-frontend

@@ -10,7 +10,8 @@ export default function Meals() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await apiSearch('http://localhost:3001/meals');
+      const host = process.env.REACT_APP_HOST;
+      const response = await apiSearch(`${host}/meals`);
       const magicNumber = 12;
       setApi(response.meals.slice(0, magicNumber));
       setOriginalApi(response.meals.slice(0, magicNumber));
