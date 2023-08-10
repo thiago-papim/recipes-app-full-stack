@@ -2,9 +2,9 @@
   "name": "back-end",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./build/server.js",
   "scripts": {
-    "prestart": "tsc && env $(cat .env) npx sequelize-cli db:create && npx sequelize-cli db:migrate",
+    "prestart": "npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
     "start": "tsc && node build/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsnd --watch \"./src/**\" --transpile-only ./src/server.ts",
