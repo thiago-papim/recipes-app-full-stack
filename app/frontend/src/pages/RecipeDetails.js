@@ -22,14 +22,14 @@ function RecipeDetails(props) {
   const type = urlAposDominio[1];
 
   const getFood = async () => {
-    const response = await fetch(`http://localhost:3001/meals/${id}`);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/meals/${id}`);
     const data = await response.json();
     return data.meals;
   };
 
   const getMealsRecomendations = async () => {
     const magicNumber = 6;
-    const response = await fetch('http://localhost:3001/meals');
+    const response = await fetch(`${process.env.REACT_APP_HOST}/meals`);
     const data = await response.json();
     const recipes = data.meals;
     const slicedMeals = recipes.slice(0, magicNumber);
@@ -37,7 +37,7 @@ function RecipeDetails(props) {
   };
 
   const getDrink = async () => {
-    const response = await fetch(`http://localhost:3001/drinks/${id}`);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/drinks/${id}`);
     const data = await response.json();
     console.log(data);
     return data.drinks;
@@ -45,7 +45,7 @@ function RecipeDetails(props) {
 
   const getDrinksRecomendations = async () => {
     const magicNumber = 6;
-    const response = await fetch('http://localhost:3001/drinks/name?q=');
+    const response = await fetch(`${process.env.REACT_APP_HOST}/drinks/name?q=`);
     const data = await response.json();
     const recipes = data.drinks;
     const slicedDrinks = recipes.slice(0, magicNumber);

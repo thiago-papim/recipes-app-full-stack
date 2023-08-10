@@ -42,11 +42,11 @@ export default function SearchBar() {
     if (inputRadio === 'First letter' && inputSearch.length > 1) {
       global.alert('Your search must have only 1 (one) character');
     } else if (inputRadio === 'First letter' && inputSearch.length === 1) {
-      recipeArr = await apiSearch(`http://localhost:3001/${validationApi}/letter?q=${inputSearch}`);
+      recipeArr = await apiSearch(`${process.env.REACT_APP_HOST}/${validationApi}/letter?q=${inputSearch}`);
     } else if (inputRadio === 'Name') {
-      recipeArr = await apiSearch(`http://localhost:3001/${validationApi}/name?q=${inputSearch}`);
+      recipeArr = await apiSearch(`${process.env.REACT_APP_HOST}/${validationApi}/name?q=${inputSearch}`);
     } else {
-      recipeArr = await apiSearch(`http://localhost:3001/${validationApi}/ingredient?q=${inputSearch}`);
+      recipeArr = await apiSearch(`${process.env.REACT_APP_HOST}/${validationApi}/ingredient?q=${inputSearch}`);
     }
     recipeApi(recipeArr);
   };

@@ -15,9 +15,8 @@ export default function Recipes() {
   useEffect(() => {
     const pageName = pathname.includes('meals');
     const validationApi = pageName
-      ? ['http://localhost:3001/meals/categories', 'meals']
-      // : ['https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list', 'drinks'];
-      : ['http://localhost:3001/drinks/categories', 'drinks'];
+      ? [`${process.env.REACT_APP_HOST}/meals/categories`, 'meals']
+      : [`${process.env.REACT_APP_HOST}/drinks/categories`, 'drinks'];
     async function fetchData() {
       const magicNumber = 5;
       const response = await apiSearch(validationApi[0]);
@@ -33,8 +32,8 @@ export default function Recipes() {
       const magicNumber = 12;
       const pageName = pathname.includes('meals');
       const validationApi = pageName
-        ? [`http://localhost:3001/meals/category?q=${textContent}`, 'meals']
-        : [`http://localhost:3001/drinks/category?q=${textContent}`, 'drinks'];
+        ? [`${process.env.REACT_APP_HOST}/meals/category?q=${textContent}`, 'meals']
+        : [`${process.env.REACT_APP_HOST}/category?q=${textContent}`, 'drinks'];
       const response = await apiSearch(validationApi[0]);
       const result = response[validationApi[1]].slice(0, magicNumber);
       setApi(result);

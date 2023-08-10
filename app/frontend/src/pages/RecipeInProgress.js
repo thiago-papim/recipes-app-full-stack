@@ -27,11 +27,11 @@ function RecipeInProgress() {
     setIdRecipe(id);
     const fetchApi = async () => {
       if (name) {
-        const response = await apiSearch(`http://localhost:3001/meals/${id}`);
+        const response = await apiSearch(`${process.env.REACT_APP_HOST}/meals/${id}`);
         setRecipe(response.meals[0]);
       } else {
         const response = await apiSearch(
-          `http://localhost:3001/drinks/${id}`,
+          `${process.env.REACT_APP_HOST}/drinks/${id}`,
         );
         setRecipe(response.drinks[0]);
       }
