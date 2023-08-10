@@ -61,13 +61,6 @@ class MealsModel {
             return dbData;
         });
     }
-    // async getAllCategories(): Promise<string[]> {
-    //   const dbData = await this.model.findAll({
-    //     attributes: ['strCategory'],
-    //     raw: true,
-    //   });
-    //   return dbData.map(item => item.strCategory);
-    // }
     getAllCategories() {
         return __awaiter(this, void 0, void 0, function* () {
             const dbData = yield this.model.findAll({

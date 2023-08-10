@@ -17,12 +17,11 @@ services:
       - 3001:3001
     working_dir: /app-backend
     environment:
-      - APP_PORT=3001
-      - JWT_SECRET=jwt_secret
-      - DB_USER=root
-      - DB_PASS=123456
-      - DB_HOST=db
-      - DB_PORT=3306
+      - PORT=3001
+      - MYSQLUSER=root
+      - MYSQLPASSWORD=123456
+      - MYSQLHOST=db
+      - MYSQLPORT=3306
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3001"]
       timeout: 10s
