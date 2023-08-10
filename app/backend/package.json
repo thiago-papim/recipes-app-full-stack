@@ -4,7 +4,7 @@
   "description": "",
   "main": "./build/server.js",
   "scripts": {
-    "prestart": "npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "prestart": "npm run db:reset",
     "start": "tsc && node build/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsnd --watch \"./src/**\" --transpile-only ./src/server.ts",
@@ -12,6 +12,7 @@
     "up": "docker compose up --build",
     "create": "tsc && env $(cat .env) npx sequelize db:create",
     "migration": "npx sequelize db:migrate",
+    "db:reset": "npx tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "seed": "npx sequelize db:seed:all",
     "reset": "npm run down && npm run up",
     "db": "npm run create && npm run migration && npm run seed"
